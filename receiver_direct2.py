@@ -1,6 +1,9 @@
 import pika
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.201', port=5672))
+#connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.201', port=5672))
+
+credentials = pika.PlainCredentials('admin', 'architeq2020.')
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='amqp.architeq.cl', port=5672, credentials=credentials))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='besalco', exchange_type='direct')
